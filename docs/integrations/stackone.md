@@ -133,6 +133,8 @@ tools depend on which SaaS providers you have connected in your
 To list discovered tools:
 
 ```python
+from stackone_adk import StackOnePlugin
+
 plugin = StackOnePlugin(account_id="YOUR_ACCOUNT_ID")
 # Optional: omit to use all connected accounts
 for tool in plugin.get_tools():
