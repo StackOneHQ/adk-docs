@@ -167,8 +167,7 @@ uv add stackone-adk
 
 ## Search and execute mode
 
-Search-and-execute is an alternative tool registration strategy. With
-`mode="search_and_execute"`, the plugin registers exactly two tools,
+With `mode="search_and_execute"`, the plugin registers exactly two tools,
 `tool_search` and `tool_execute`. The model invokes them at runtime to
 discover and call the underlying StackOne tools on demand.
 
@@ -176,9 +175,9 @@ Registering every tool definition with the model has three costs. It consumes
 prompt tokens that would otherwise be available for reasoning. It can exceed
 provider payload limits, since Gemini imposes hard caps on the size and
 number of function declarations per request. It also degrades tool-selection
-accuracy as the candidate set grows. Search-and-execute keeps the registered
-tool count at two regardless of catalog size, and the model resolves the
-right tool through a natural-language query at runtime.
+accuracy as the candidate set grows. This mode keeps the registered tool
+count at two regardless of catalog size, and the model resolves the right
+tool through a natural-language query at runtime.
 
 This mode requires `stackone-adk>=0.2.0`.
 
@@ -290,7 +289,7 @@ Parameter | Type | Default | Description
 `account_ids` | `list[str] | None` | `None` | Scope tools to specific connected account IDs.
 `mode` | `Literal["search_and_execute"] | None` | `None` | Tool registration strategy. With `None`, every discovered tool is registered with the agent. With `"search_and_execute"`, the plugin registers two tools (`tool_search` and `tool_execute`), and the model selects and invokes tools at runtime.
 `search` | `SearchConfig | None` | `None` | Search backend configuration forwarded to `StackOneToolSet`. Takes effect when `mode="search_and_execute"`. Defaults to `{"method": "auto"}` in that mode.
-`execute` | `ExecuteToolsConfig | None` | `None` | Execution configuration (account scoping, timeout) forwarded to `StackOneToolSet`.
+`execute` | `ExecuteToolsConfig | None` | `None` | Execution configuration forwarded to `StackOneToolSet`.
 `timeout` | `float` | `180.0` | Per-request timeout in seconds for HTTP calls (account discovery and tool execution). Increase for slow connectors.
 
 ### Tool filtering
