@@ -168,16 +168,24 @@ uv add stackone-adk
 ## Search and execute mode
 
 With `mode="search_and_execute"`, the plugin registers exactly two tools,
-`tool_search` and `tool_execute`. The model invokes them at runtime to
-discover and call the underlying StackOne tools on demand.
+`tool_search` and `tool_execute`. The model uses them at runtime to discover
+the right StackOne tool and invoke it, instead of seeing the full catalog
+upfront.
 
-Registering every tool definition with the model has three costs. It consumes
-prompt tokens that would otherwise be available for reasoning. It can exceed
-provider payload limits, since Gemini imposes hard caps on the size and
-number of function declarations per request. It also degrades tool-selection
-accuracy as the candidate set grows. This mode keeps the registered tool
-count at two regardless of catalog size, and the model resolves the right
-tool through a natural-language query at runtime.
+Registering every tool definition with the model has three costs:
+
+- **Token overhead:** Tool schemas consume prompt tokens that could otherwise
+  be available for reasoning.
+- **Payload limits:** Large catalogs can exceed provider payload limits.
+  Gemini, for example, imposes hard limits on the size and number of function
+  declarations per request.
+- **Selection accuracy:** Tool-selection quality degrades as the tool
+  candidate set grows, since the model has more near-duplicates to
+  disambiguate.
+
+This mode keeps the registered tool count at two regardless of catalog size.
+The model resolves the right tool through a natural-language query at
+runtime.
 
 This mode requires `stackone-adk>=0.2.0`.
 
