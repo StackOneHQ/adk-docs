@@ -26,7 +26,7 @@ on:
 jobs:
   # This job builds and runs the Go snippets.
   test:
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-x64-4x
     
     steps:
     - name: Checkout code

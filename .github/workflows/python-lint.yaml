@@ -34,7 +34,7 @@ on:
 
 jobs:
   get_sample_dirs:
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-x64-2x
     outputs:
       sample_dirs: ${{ steps.get_dirs.outputs.sample_dirs }}
     steps:
@@ -50,7 +50,7 @@ jobs:
           echo "SAMPLE_DIRS: $SAMPLE_DIRS"  # For debugging
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-x64-2x
     strategy:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]

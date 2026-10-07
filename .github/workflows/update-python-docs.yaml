@@ -17,7 +17,7 @@ on:
 jobs:
   update-adk-python-docs-from-issue:
     if: contains(github.event.issue.labels.*.name, 'docs updates')
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-x64-2x
 
     steps:
       - name: Checkout ADK Python repository
